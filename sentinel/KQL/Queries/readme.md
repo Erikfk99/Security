@@ -11,12 +11,17 @@ Her you will find custom queries, everything from hunting queries to queries tha
 Small guide on how to save a query in Sentinel. Will contain a small query just as an example 
 
 1. Create your query
+
     ![](images/image_query.png)
-3. Press save 
+2. Press save 
+   
+
     ![Alt text](images/image_saveQuery.png)
-4. press save as query
+3. press save as query
+   
+   
     ![Alt text](images/image_asQuery.png)
-5. Save as query window will open: 
+4. Save as query window will open: 
    1. Give your query a fitting name. in this case maybe "Security Incidents Severity High" Find a naming convention that fits your organisation
    This is the only part that is manditory here. Everything else in the window is optional. 
    2. Write a description so that other analysts can understand what the goal of the query is 
