@@ -3,7 +3,7 @@ Using functions within your Microsoft Sentinel can speed up your querieing. Crea
 
 These functions are functions which I have used within Sentinel or log analytics workspaces. 
 
--- 
+---
 
 ## How to save a query as a function 
 
