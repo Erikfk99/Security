@@ -1,0 +1,31 @@
+// This function is to create a table so that the security analyst 
+// can quickly get an overview of user that has downloaded a file, 
+// which filepath and what file type. Mos useful is for analyst if they see
+// that the filePath is "public" they can immediatly close the incident. 
+// This could been prevented if DLP policies was used, though this is next best. 
+let alertIDS =SecurityIncident 
+| where IncidentNumber == IncidentNMB //This is the variable put in the funciton. See: how to store as a function.
+| project AlertIds;
+let userAD = SecurityAlert
+| where SystemAlertId in (alertIDS)
+| extend aadUsrID = extract(@"(a*AadUserId..)([""])(\w+-\w+-\w+-\w+-\w+)", 3, tostring(Entities))
+| distinct aadUsrID
+| project aadUsrID;
+SecurityAlert
+| where SystemAlertId in (alertIDS)
+| extend AccountObjectId = extract(@"(a*AadUserId..)([""])(\w+-\w+-\w+-\w+-\w+)", 3, tostring(Entities))
+| extend IPAddress = extract(@"(a*Address..)([""])(\w+.\w+.\w+.\w+)", 3, tostring(Entities))
+| join kind=inner CloudAppEvents on AccountObjectId, IPAddress
+| where ActionType == "FileDownloaded"
+| extend pu = extract(@"(Name...)(https.+?)([""])", 2, tostring(ActivityObjects))
+| project pu
+| extend puSplit = split(pu, "/")
+| mv-apply puSplit on 
+    (
+        summarize puSplit = make_list_if(puSplit, isnotempty(puSplit))
+    )
+| extend website = puSplit[1], directory = puSplit[2], siteUser = puSplit[3], pathOne = puSplit[4], pathTwo = puSplit[5],FileDwnld = puSplit[array_length(puSplit)-1], filExtension = split(puSplit[array_length(puSplit)-1], ".")[1]
+| distinct tostring(siteUser), tostring(directory), tostring(pathOne), tostring(pathTwo),tostring(filExtension)
+
+
+// disclamer, there is a better way to get "AadUserId" than getting it with reqex. this code will be changed
