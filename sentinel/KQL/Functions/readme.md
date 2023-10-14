@@ -10,16 +10,14 @@ These functions are functions which I have used within Sentinel or log analytics
 A Small guide on how to save a KQL query as a function in microsoft Sentinel. 
 
 1. Write down a query that you use often, such as getting a users AADID from an incident: 
-   1. ```
-   {
+   1. 
+   ```
     SecurityAlert
     | where SystemAlertID == {customAlertID}
     | mv-expand parse_json(Entities)
     | where Entities.Type == "account"
     | extend userAD = tostring(Entities["AadUserId"])
     | project AADUserId = userAD
-   }
-   
    ```
 2. When you have written the deciered query you can store it as a function
    1. Press Save: 
