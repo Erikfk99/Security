@@ -1,8 +1,8 @@
 // This function is to create a table so that the security analyst 
-// can quickly get an overview of user that has downloaded a file, 
+// can quickly get an overview of user that has deleted a file, 
 // which filepath and what file type. Mos useful is for analyst if they see
-// that the filePath is "public" they can immediatly close the incident. 
-// This could been prevented if DLP policies was used, though this is next best. 
+// that the filePath is "public" they can immediatly escelate the incident. 
+// This could been prevented if DLP policies was used, though this is next best before the customer has time to create DLP rules. 
 let alertIDS =SecurityIncident
 | where IncidentNumber == IncidentNMB //This is the variable put in the funciton. See: how to store as a function.
 | project AlertIds;
