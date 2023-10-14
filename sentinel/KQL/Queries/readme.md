@@ -19,7 +19,7 @@ Small guide on how to save a query in Sentinel. Will contain a small query just 
     ![Alt text](images/image_saveQuery.png)
 3. press save as query
    
-   
+
     ![Alt text](images/image_asQuery.png)
 4. Save as query window will open: 
    1. Give your query a fitting name. in this case maybe "Security Incidents Severity High" Find a naming convention that fits your organisation
@@ -36,3 +36,5 @@ Small guide on how to save a query in Sentinel. Will contain a small query just 
          3. Choose a fitting label if desirable
 
 ![Alt text](images/image_saveQueryWindow.png)
+
+---
