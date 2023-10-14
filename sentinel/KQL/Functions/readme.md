@@ -35,7 +35,6 @@ A Small guide on how to save a KQL query as a function in microsoft Sentinel.
 3. Using the Function: 
    1. Open a query window and start writing out your own function 
     ```
-    
     YourFunctionName({variable})
     ```
    ![](images/image_useFunction.png)
