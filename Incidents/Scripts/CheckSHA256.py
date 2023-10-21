@@ -33,7 +33,7 @@ def search_files_by_sha256(directory, check_hashes):
 
 
 #Directory containing files to check 
-start_directory = "/Users/erikfayekarla/Desktop" #change this to directory you want to check.
+start_directory = "/" #change this to directory you want to check.
 
 search_files_by_sha256(start_directory, check_hashes)
 
